@@ -1,0 +1,30 @@
+-- 특정위치에서 반올림하는 ROUND함수
+SELECT ROUND(1234.5678) AS ROUND,
+       ROUND(1234.5678, 0) AS ROUND_0,
+       ROUND(1234.5678, 1) AS ROUND_1,
+       ROUND(1234.5678, 2) AS ROUND_2,
+       ROUND(1234.5678, -1) AS ROUND_MIUNUS1,
+       ROUND(1234.5678, -2) AS ROUND_MIUNUS2
+FROM DUAL;
+
+-- 특정위치에서 버리는 TRUNC함수
+SELECT TRUNC(1234.5678) AS TRUNC,
+       TRUNC(1234.5678, 0) AS TRUNC_0,
+       TRUNC(1234.5678, 1) AS TRUNC_1,
+       TRUNC(1234.5678, 2) AS TRUNC_2,
+       TRUNC(1234.5678, -1) AS TRUNC_MINUS1,
+       TRUNC(1234.5678, -2) AS TRUNC_MINUS2
+FROM DUAL;       
+
+-- 지정한 숫자와 가까운 정수를 찾는 CEIL, FLOOR함수
+SELECT CEIL(3.14),
+       FLOOR(3.14),
+       CEIL(-3.14),
+       FLOOR(-3.14)
+FROM DUAL;       
+
+-- 나머지를 구하는 MOD함수
+SELECT MOD(15, 6),
+       MOD(10, 2),
+       MOD(11, 2)
+FROM DUAL;       

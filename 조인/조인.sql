@@ -1,0 +1,63 @@
+-- 여러 테이블을 사용할 때의 FROM 절
+SELECT * FROM EMP, DEPT ORDER BY EMPNO;
+
+-- 열 이름을 비교하는 조건식으로 조인하기
+SELECT * FROM EMP, DEPT 
+  WHERE EMP.DEPTNO = DEPT.DEPTNO
+  ORDER BY EMPNO;
+  
+
+-- 테이블의 별칭 설정
+SELECT * FROM EMP E, DEPT D
+  WHERE E.DEPTNO = D.DEPTNO
+  ORDER BY EMPNO;
+
+-- 등가 조인
+
+-- 여러 테이블의 열 이름이 같을 때 유의점
+SELECT EMPNO, ENAME, DEPTNO, DNAME, LOC FROM EMP E, DEPT D
+  WHERE E.DEPTNO = D.DEPTNO;
+
+-- 열 이름에 각각의 테이블 이름 명시
+SELECT E.EMPNO, E.ENAME, D.DEPTNO, D.DNAME, D.LOC 
+  FROM EMP E, DEPT D
+  WHERE E.DEPTNO = D.DEPTNO
+  ORDER BY D.DEPTNO, E.DEPTNO;
+
+-- WHERE 절 추가
+SELECT E.EMPNO, E.ENAME, E.SAL, D.DEPTNO, D.DNAME, D.LOC 
+  FROM EMP E, DEPT D
+  WHERE E.DEPTNO = D.DEPTNO
+  AND SAL >= 3000;
+  
+  
+-- 비등가 조인
+SELECT * FROM EMP E, SALGRADE S
+WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL;
+
+
+-- 자체 조인 같은 테이블을 두 번 사용하여 자체 조인
+SELECT E1.EMPNO, E1.ENAME, E1.MGR,
+       E2.EMPNO AS MGR_EMPNO,
+       E2.ENAME AS MGR_ENAME
+       FROM EMP E1, EMP E2
+       WHERE E1.MGR = E2.EMPNO;
+       
+       
+       /* 외부 조인 
+       (아래 문법은 Oracle에서만 사용됨) */
+-- 왼쪽 외부조인
+SELECT E1.EMPNO, E1.ENAME, E1.MGR,
+       E2.EMPNO AS MGR_EMPNO,
+       E2.ENAME AS MGR_ENAME
+       FROM EMP E1, EMP E2
+       WHERE E1.MGR = E2.EMPNO(+)
+       ORDER BY E1.EMPNO;
+       
+-- 오른쪽 외부조인
+SELECT E1.EMPNO, E1.ENAME, E1.MGR,
+       E2.EMPNO AS MGR_EMPNO,
+       E2.ENAME AS MGR_ENAME
+       FROM EMP E1, EMP E2
+       WHERE E1.MGR(+) = E2.EMPNO
+       ORDER BY E1.EMPNO;

@@ -1,0 +1,29 @@
+--IN연산자
+SELECT * FROM EMP WHERE JOB IN('MANAGER','SALESMAN', 'CLERK');
+
+--BETWEEN A AND B
+SELECT * FROM EMP WHERE SAL BETWEEN 2000 AND 3000;
+
+--NOT BETWEEN A AND B
+SELECT * FROM EMP WHERE SAL NOT BETWEEN 2000 AND 3000;
+
+-- LIKE 연산자를 사용하여 출력
+SELECT * FROM EMP WHERE ENAME LIKE 'S%';
+
+-- LIKE 연산자를 사용하여 두 번째 글자가 L인 데이터만 출력
+SELECT * FROM EMP WHERE ENAME LIKE '_L%';
+
+-- 사원 이름에 AM이 포함된 데이터만 출력
+SELECT * FROM EMP WHERE ENAME LIKE '%AM%';
+
+-- 사원 이름에 AM이 포함되지 않은 데이터만 출력
+SELECT * FROM EMP WHERE ENAME NOT LIKE '%AM%';
+
+-- 등가 연산자로 추가 수당 열에서 NULL이 포함된 데이터 출력
+SELECT * FROM EMP WHERE COMM = NULL;
+
+-- IS NULL 연산자로 추가 수당 열에서 NULL이 포함된 데이터 출력
+SELECT * FROM EMP WHERE COMM IS NULL;
+
+-- MGR에서 NULL이 없는 사원데이터만 출력하기
+SELECT * FROM EMP WHERE MGR IS NOT NULL;
